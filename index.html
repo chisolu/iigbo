@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>igbo market days</title>
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#222222">
+         <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h4>HisolTech</h4>
+            <p>igbo mini calendar (igbo week day)</p>
+            <h5>Tata bu</h5>
+            <div id="igbo" class="big"> </div>
+            <div id="day" class="big"></div>
+                 <!-- <div id="time" class="big"></div> -->
+                <hr>
+            <div class="calender">  
+                <div class="igbo-date">
+                    <div id="month" class="big"></div>
+                    <div id="dateNum" class="big"></div>
+                </div>
+
+
+                <div class="english-date">
+                    <div id="year" class="big"></div>
+                    <!-- <div id="igbo" class="big"></div> -->
+                </div>
+            </div>
+                <div id="time2" class="big"></div>
+        </div>        
+        <!-- <script src="script.js"></script> -->
+
+        <script>
+            const igboDays = [ "ORIE", "AFO", "NKWO", "EKE" ];
+
+            // choose your anchor, lets assume EKE
+            const startDate = new Date("2026-01-01"); 
+
+            function update() {
+                const today = new Date();
+
+                document.getElementById("time2").textContent = 
+                today.toLocaleTimeString();
+
+                document.getElementById("day").textContent = 
+                "" + today.toLocaleDateString("en-US", {weekday: "long"});
+
+                document.getElementById("dateNum").textContent = 
+                "" + today.getDate();
+
+                document.getElementById("month").textContent = 
+                "" + today.toLocaleDateString("en-us", {month: "long"});
+
+                document.getElementById("year").textContent = 
+                "" + today.getFullYear();
+
+                // normal day
+                // const weekday = today.toLocaleDateString("en-US", {
+                //     weekday: "long"
+                // });
+            
+
+            // igbo culculation
+            const oneDay = 1000 * 60 * 60 * 24;
+            const diff = Math.floor((today - startDate) / oneDay);
+            const igboDay = igboDays[(diff % 4 + 4) % 4];
+
+            // document.getElementById("time").textContent = "Day: " + weekday;
+
+            document.getElementById("igbo").textContent = igboDay;
+
+        }
+        update();
+
+        if ("serviceworker" in navigator) {
+            navigator .serviceWorker .register("./sw.js")
+            .then(() => console.log("SW Registered"))
+        }
+
+        </script>
+    </body>
+</html>
