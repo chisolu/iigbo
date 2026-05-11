@@ -1,13 +1,13 @@
 {
     "name": "igbo weekday",
     "short_name": "igboDay",
-    "start_url": "./index.html",
+    "start_url": "./",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#222222",
     "icons": [
         {
-            "src": "icon.png",
+            "src": "icon.png/icon.png",
             "sizes": "192*192",
             "type": "image/png"
         }

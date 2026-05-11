@@ -1,11 +1,7 @@
-self.addEventListener("install", () => {
-    console.log("service worker installed");
+self.addEventListener("install", event => {
+    console.log("PWA Installed");
 });
 
-// self.addEventListener("fetch", event => {
-//     event.respondwith(
-//         fetch(event.request).catch(() => {
-//             return new Response("offline");
-//         })
-//     );
-// });
+self.addEventListener("fetch", event => {
+    event.respondWith(fetch(event.request));
+});
